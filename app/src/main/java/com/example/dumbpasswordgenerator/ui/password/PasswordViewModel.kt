@@ -20,6 +20,8 @@ class PasswordViewModel: ViewModel() {
 
     var lengthFulfilled by mutableStateOf(false)
     var containsTwoNumbers by mutableStateOf(false)
+    var containsTwoLetters by mutableStateOf(false)
+    var containsTwoSpecials by mutableStateOf(false)
 
     fun updateFeedback() {
 
@@ -31,6 +33,9 @@ class PasswordViewModel: ViewModel() {
 
         // At least 2 numbers
         containsTwoNumbers = password.count { it.isDigit() } >= 2
+
+        // At least 2 letters
+        containsTwoLetters = password.count { it.isLetter() } >= 2
     }
 
     @Composable
