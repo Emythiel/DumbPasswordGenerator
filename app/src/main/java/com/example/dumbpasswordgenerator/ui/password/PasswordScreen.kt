@@ -87,6 +87,13 @@ fun PasswordScreen(navController: NavController) {
                             viewModel.containsTwoNumbersString -> if (!viewModel.containsTwoNumbers) 1 else 0
                             viewModel.containsTwoLettersString -> if (!viewModel.containsTwoLetters) 1 else 0
                             viewModel.containsTwoSpecialsString -> if (!viewModel.containsTwoSpecials) 1 else 0
+                            viewModel.minOneUpperCaseString -> if (!viewModel.minOneUpperCase) 1 else 0
+                            viewModel.minOneLowerCaseString -> if (!viewModel.minOneLowerCase) 1 else 0
+                            viewModel.noSameTwoLetterNeighborsString -> if (!viewModel.noSameTwoLetterNeighbors) 1 else 0
+                            viewModel.containEmojiString -> if (!viewModel.containEmoji) 1 else 0
+                            viewModel.startWithSpecialString -> if (!viewModel.startWithSpecial) 1 else 0
+                            viewModel.endOnLetterString -> if (!viewModel.endOnLetter) 1 else 0
+                            viewModel.maximumLengthString -> if (!viewModel.maximumLength) 1 else 0
                             else -> 0
                         }
                     }
@@ -99,6 +106,13 @@ fun PasswordScreen(navController: NavController) {
                                 viewModel.containsTwoNumbersString -> viewModel.containsTwoNumbers
                                 viewModel.containsTwoLettersString -> viewModel.containsTwoLetters
                                 viewModel.containsTwoSpecialsString -> viewModel.containsTwoSpecials
+                                viewModel.minOneUpperCaseString -> viewModel.minOneUpperCase
+                                viewModel.minOneLowerCaseString -> viewModel.minOneLowerCase
+                                viewModel.noSameTwoLetterNeighborsString -> viewModel.noSameTwoLetterNeighbors
+                                viewModel.containEmojiString -> viewModel.containEmoji
+                                viewModel.startWithSpecialString -> viewModel.startWithSpecial
+                                viewModel.endOnLetterString -> viewModel.endOnLetter
+                                viewModel.maximumLengthString -> viewModel.maximumLength
                                 else -> false
                             }
                         )
