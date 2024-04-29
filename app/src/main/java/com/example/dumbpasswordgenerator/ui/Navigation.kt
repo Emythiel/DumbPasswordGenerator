@@ -20,5 +20,12 @@ fun SetupNavGraph(
         ) {
             StartScreen(navController = navController)
         }
+
+        // Password Screen Route
+        composable(
+            route = Screen.PasswordScreen.route
+        ) {
+            PasswordScreen(navController = navController)
+        }
     }
 }
