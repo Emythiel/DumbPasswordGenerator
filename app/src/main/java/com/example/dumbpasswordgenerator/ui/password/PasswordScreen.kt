@@ -49,7 +49,7 @@ fun PasswordScreen(navController: NavController) {
             ) {
                 Button(
                     onClick = {
-                              viewModel.checkPassword()
+                        viewModel.checkPassword()
                     },
                     modifier = Modifier
                         .padding(end = 8.dp),
@@ -81,14 +81,28 @@ fun PasswordScreen(navController: NavController) {
                     .padding(12.dp)
             ) {
                 Column {
-                    viewModel.RuleItem(
-                        rule = "Must be at least 6 characters long",
-                        isFulfilled = viewModel.lengthFulfilled
-                    )
-                    viewModel.RuleItem(
-                        rule = "Must contain at least 2 digits",
-                        isFulfilled = viewModel.containsTwoNumbers
-                    )
+                    val sortedRules = viewModel.rules.sortedByDescending { rule ->
+                        when (rule) {
+                            viewModel.lengthFulfilledString -> if (!viewModel.lengthFulfilled) 1 else 0
+                            viewModel.containsTwoNumbersString -> if (!viewModel.containsTwoNumbers) 1 else 0
+                            viewModel.containsTwoLettersString -> if (!viewModel.containsTwoLetters) 1 else 0
+                            viewModel.containsTwoSpecialsString -> if (!viewModel.containsTwoSpecials) 1 else 0
+                            else -> 0
+                        }
+                    }
+
+                    sortedRules.forEach { rule ->
+                        viewModel.RuleItem(
+                            rule = rule,
+                            isFulfilled = when (rule) {
+                                viewModel.lengthFulfilledString -> viewModel.lengthFulfilled
+                                viewModel.containsTwoNumbersString -> viewModel.containsTwoNumbers
+                                viewModel.containsTwoLettersString -> viewModel.containsTwoLetters
+                                viewModel.containsTwoSpecialsString -> viewModel.containsTwoSpecials
+                                else -> false
+                            }
+                        )
+                    }
                 }
             }
         }
