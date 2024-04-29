@@ -36,6 +36,15 @@ class PasswordViewModel: ViewModel() {
 
         // At least 2 letters
         containsTwoLetters = password.count { it.isLetter() } >= 2
+
+        // At least 2 special characters
+        containsTwoSpecials = password.count { !it.isLetterOrDigit() } >= 2
+
+        addUnfulfilledRule()
+    }
+
+    private fun addUnfulfilledRule() {
+
     }
 
     @Composable
