@@ -40,52 +40,10 @@ fun PasswordScreen(navController: NavController) {
                 label = { Text("Password") },
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(bottom = 10.dp)
             )
 
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .padding(top = 10.dp, bottom = 10.dp)
-            ) {
-                Button(
-                    onClick = {
-                        viewModel.checkPassword()
-                    },
-                    modifier = Modifier
-                        .padding(end = 8.dp),
-                    shape = RoundedCornerShape(4.dp)
-
-                ) {
-                    Text(text = "Check")
-                }
-
-                Text(
-                    text = viewModel.feedback,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight(0.05f)
-                        .border(
-                            width = 1.dp,
-                            color = Color.LightGray,
-                            shape = RoundedCornerShape(8.dp)
-                        )
-                        .padding(top = 6.dp, start = 4.dp, end = 4.dp)
-                )
-            }
-
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(color = Color(0xFFffe972), shape = RoundedCornerShape(16.dp))
-                    .border(width = 2.dp, color = Color.DarkGray, shape = RoundedCornerShape(16.dp))
-                    .padding(12.dp)
-            ) {
-                Column {
-                    viewModel.rules.forEach { rule ->
-                        viewModel.RuleItem(rule)
-                    }
-                }
-            }
+            RulesBox(viewModel)
         }
     }
 }
