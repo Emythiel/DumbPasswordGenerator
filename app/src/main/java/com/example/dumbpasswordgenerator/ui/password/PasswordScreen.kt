@@ -49,6 +49,7 @@ fun PasswordScreen(navController: NavController) {
             ) {
                 Button(
                     onClick = {
+                              viewModel.checkPassword()
                     },
                     modifier = Modifier
                         .padding(end = 8.dp),
@@ -63,7 +64,11 @@ fun PasswordScreen(navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .fillMaxHeight(0.05f)
-                        .border(width = 1.dp, color = Color.LightGray, shape = RoundedCornerShape(8.dp))
+                        .border(
+                            width = 1.dp,
+                            color = Color.LightGray,
+                            shape = RoundedCornerShape(8.dp)
+                        )
                         .padding(top = 6.dp, start = 4.dp, end = 4.dp)
                 )
             }
@@ -71,13 +76,19 @@ fun PasswordScreen(navController: NavController) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(color = Color.Transparent, shape = RoundedCornerShape(16.dp))
+                    .background(color = Color(0xFFffe972), shape = RoundedCornerShape(16.dp))
                     .border(width = 2.dp, color = Color.DarkGray, shape = RoundedCornerShape(16.dp))
                     .padding(12.dp)
             ) {
                 Column {
-                    Text(text = "Rule 1")
-                    Text(text = "Rule 2")
+                    viewModel.RuleItem(
+                        rule = "Must be at least 6 characters long",
+                        isFulfilled = viewModel.lengthFulfilled
+                    )
+                    viewModel.RuleItem(
+                        rule = "Must contain at least 2 digits",
+                        isFulfilled = viewModel.containsTwoNumbers
+                    )
                 }
             }
         }
