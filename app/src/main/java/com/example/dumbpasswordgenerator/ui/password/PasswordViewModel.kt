@@ -19,8 +19,11 @@ class PasswordViewModel: ViewModel() {
     var password by mutableStateOf("")
     var feedback by mutableStateOf("Feedback")
 
-    private fun Char.isEmoji(): Boolean {
-        return this.code in 0x1F300..0x1F6FF
+    var targetSum by mutableStateOf(0)
+    var numbersSum by mutableStateOf(0)
+
+    private fun calculateNumbersSum(): Int {
+
     }
 
     val rules = mutableListOf(
@@ -34,7 +37,7 @@ class PasswordViewModel: ViewModel() {
         Rule("Two of the same letters cannot be next to each other") { !Regex("([a-zA-Z])\\1").containsMatchIn(password) },
         Rule("Must start with a special character") { Regex("^[^a-zA-Z0-9]").containsMatchIn(password) },
         Rule("Must end on a letter") { Regex("[a-zA-Z]\$").containsMatchIn(password) },
-        Rule("Must contain at least one emoji") { password.any { it.isEmoji() } }
+        Rule("Must contain at least one emoji") { Regex("[\\p{So}]").containsMatchIn(password) }
     )
 
     fun updateFeedback() {
